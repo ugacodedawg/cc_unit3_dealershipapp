@@ -13,3 +13,20 @@ p {
 li.list {
   text-decoration: underline;
 }
+
+img.modalImg {
+    max-width:500px;
+    max-height:500px;
+    width:auto;
+    height:auto;
+}
+
+span.blue {
+  color: blue;
+}
+span.green {
+  color: green;
+}
+span.purple {
+  color: purple;
+}

@@ -1,57 +1,57 @@
-<h2>Welcome to CCC!</h2>
+<h2>Welcome to <span class="blue">Crazy</span> <span class="green">Carl's</span> <span class="purple">Cars!</span></h2>
 <p>
   {{controller.message}}
 </p>
 <div class="left">
-<form name="carForm" novalidate>
-  <i class="material-icons">search</i>
-  <input ng-model="controller.search"
-       ng-model-options="{debounce:1000}"
-       ng-change="controller.fetch()" />
+  <form name="carForm" novalidate>
+    <i class="material-icons">search</i>
+    <input ng-model="controller.search"
+    ng-model-options="{debounce:1000}"
+    ng-change="controller.fetch()" uib-tooltip="Start Typing, whatever car starts with those letters will remain on list" tooltip-placement="bottom"/>
 
-<ul>
-<!-- | filter: { CarMakeId: 2 -->
-    <li class="list" ng-repeat="car in controller.cars" ng-click="controller.showModal(cars.ShortDescription)">
-        {{cars.ShortDescription}}
-    </li>
-<!--
-<li class="list" ng-repeat="make in controller.makes" ng-click="controller.showModal(makes.name)">
-    {{makes.name}}
-</li>
--->
-</ul>
-
+    <ul>
+      <!--<li class="list" ng-repeat="car in controller.cars" ng-click="controller.showModal(cars.ShortDescription)"> -->
+      <li class="list" ng-repeat="car in controller.cars|filter:{CarMakeId:controller.carMakeID}" ng-click="controller.showModal(car)">
+        {{car.ShortDescription}}
+      </li>
+    </ul>
 </div>
 <div class="right">
   <div><i class="material-icons">directions_car</i>
-      <label>
-          Selected Make:
-          <select name="make" ng-model="makes.name" ng-options="m.id as m.name for m in controller.makes" ng-change="controller.filter()">
-              {{makes.name}}
-          </select>
-      </label>
+    <label>
+      Selected Make:
+      <select name="make" ng-model="controller.carMakeID" ng-options="m.id as m.name for m in controller.makes" ng-change="controller.filter()"
+        uib-tooltip="Cars that match the selected make will appear on left" tooltip-placement="bottom">
+      <!--{{makes.name}}-->
+      </select>
+    </label>
   </div>
-
-  <div><i class="material-icons">list</i>
-      <label>
-          Selected Car:
-          <select name="car" ng-model="cars.ShortDescription" ng-options="c.CarMakeId as c.ShortDescription for c in controller.cars"
-          ng-change="controller.showModal(this)">
-              {{cars.ShortDescription}}
-          </select>
-      </label>
-  </div>
-
 </div>
-</form>
+<div class="right">
+  <button type="button" class="btn btn-primary" ng-model="singleModel" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0" onclick="location.reload()"
+    uib-tooltip="Resets to show all cars again" tooltip-placement="bottom">
+        Reset Cars
+    </button>
+</div>
+  <!--
+  <div><i class="material-icons">list</i>
+    <label>
+      Selected Car:
+      <select name="car" ng-model="cars.ShortDescription" ng-options="c.CarMakeId as c.ShortDescription for c in controller.cars"
+        ng-change="controller.showModal(this)">
+        {{cars.ShortDescription}}
+      </select>
+    </label>
+  </div> -->
+  </form>
 
 <!--
-  <select ng-model="ctrl.selectedCountryId"
-            ng-options="c.id as c.label for c in ctrl.countries">
-    </select>
-    Selected Country ID : {{ctrl.selectedCountryId}}
+<select ng-model="ctrl.selectedCountryId"
+ng-options="c.id as c.label for c in ctrl.countries">
+</select>
+Selected Country ID : {{ctrl.selectedCountryId}}
 
-    <select ng-model="movie.name" ng-options="c.id as c.name for c in controller.movies">
-        {{movie.name}}
-    </select>
-  -->
+<select ng-model="movie.name" ng-options="c.id as c.name for c in controller.movies">
+{{movie.name}}
+</select>
+-->

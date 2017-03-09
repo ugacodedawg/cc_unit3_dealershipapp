@@ -53,7 +53,6 @@ router.get('/cars', function (req, res, next) {
 });
 router.get('/cars/:id', function (req, res, next) {
     var id = parseInt(req.params['id']);
-    console.log(id);
     var car = findCar(id);
     if (car) {
         res.json(car);
@@ -61,6 +60,13 @@ router.get('/cars/:id', function (req, res, next) {
     else {
         res.sendStatus(404);
     }
+});
+router.get('/cars/search/:search', function (req, res, next) {
+    var search = req.params['search'];
+    var matches = cars.filter(function (car) {
+        return car.ShortDescription.indexOf(search) == 0;
+    });
+    res.json(matches);
 });
 function findCar(id) {
     var matches = cars.filter(function (car) {

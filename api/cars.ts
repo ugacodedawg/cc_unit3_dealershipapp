@@ -57,13 +57,22 @@ router.get('/cars', function (req, res, next) {
 router.get('/cars/:id', function (req, res, next) {
     //console.log("hit");
     let id = parseInt(req.params['id']);
-    console.log(id);
+    //console.log(id);
     let car = findCar(id);
     if (car) {
         res.json(car);
     } else {
         res.sendStatus(404);
     }
+});
+
+/* find matching cars */
+router.get('/cars/search/:search', function(req, res, next) {
+    let search = req.params['search'];
+    let matches = cars.filter((car)=>{
+      return car.ShortDescription.indexOf(search) == 0;
+    });
+    res.json(matches);
 });
 
 function findCar(id:number) {

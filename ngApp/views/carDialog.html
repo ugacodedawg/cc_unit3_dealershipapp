@@ -1,11 +1,12 @@
 <div class="modal-header">
-    <h3 class="modal-title">Selected Car: {{modal.ShortDescription}}</h3>
+    <h2 class="modal-title"><span class="blue">Selected Car:</span> {{modal.car.ShortDescription}}</h2>
 </div>
 <div class="modal-body">
-    <h1>{{modal.carName}}</h1>
-    <h2>{{modal.FullDescription}}</h2>
-    <h3>{{modal.Price}}</h3>
-    <h4>{{modal.ImageUrl}}</h4>
+    <h3><span class="green">Highlights:</span> {{modal.car.FullDescription}}</h3>
+    <hr>
+    <h4><span class="purple">Price:</span> {{modal.car.Price|currency}}</h4>
+    <hr>
+    <img class="modalImg" src="{{modal.car.ImageUrl}}" alt="model picture" />
 </div>
 <div class="modal-footer">
     <button class="btn btn-primary" ng-click="modal.ok()">OK</button>
